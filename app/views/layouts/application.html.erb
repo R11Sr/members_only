@@ -7,10 +7,82 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+     <%if flash[:notice]%>
+      <div class = 'notification is-primary global-notification'>
+        <p class = 'notice'> <%= notice%> </p>
+      </div>
+
+      <% end %>
+    
+      <%if flash[:alert]%>
+      <div class = 'notification is-danger global-notification'>
+        <p class = 'alert'> <%= alert%> </p>
+      </div>
+      <% end %>
+
+      <nav class="navbar is-dark">
+        <div class="navbar-brand">
+          <%= link_to root_path, class: 'navbar-item' do%>
+            <h1 class="title is-4">Members-Only-Club</h1>
+          <% end %>
+
+          <div class="navbar-burger burger" data-target ="navbarExample">
+              <span></span>
+              <span></span>
+              <span></span>
+          </div>
+        </div>
+
+        <div class="navbar-menu" id='navbarExample'>
+          <div class="navbar-end">
+            <div class="field is-grouped">
+                <p class="control">
+                  <%= link_to 'New Post', new_post_path, class: 'button is-light' %>
+                </p>
+                <p class="control">
+                  <%= link_to 'Sign Up','#', class: 'button is-light' %>
+                
+                </p>
+                <p class="control"></p>
+
+            </div>
+          </div>
+        </div>
+
+      </nav>
+
+      <%# The following nav is to replace the profile %>
+      <nav class="level">
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading">Posts</p>
+            <p class="title">3,456</p>
+          </div>
+        </div>
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading">Following</p>
+            <p class="title">123</p>
+          </div>
+        </div>
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading">Followers</p>
+            <p class="title">456K</p>
+          </div>
+        </div>
+        <div class="level-item has-text-centered">
+          <div>
+            <p class="heading">Likes</p>
+            <p class="title">789</p>
+          </div>
+        </div>
+      </nav>      
     <%= yield %>
   </body>
 </html>

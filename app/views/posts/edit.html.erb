@@ -1,6 +1,9 @@
-<h1>Editing Post</h1>
+<div class="columns is-centered">
+    <div class="column is-half">
 
-<%= render 'form', post: @post %>
+        <%= simple_form_for(@post) do |f|%>
 
-<%= link_to 'Show', @post %> |
-<%= link_to 'Back', posts_path %>
+            <%= render 'posts/partials/form', post: @post %>    
+        <% end %>
+    </div>
+</div>

@@ -1,9 +1,20 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Post:</strong>
-  <%= @post.post %>
-</p>
+<div class="columns is-centered">
+  <div class="column is-half">
+  
+    <div class="box">
+      <div class="media">
+        <div class="content">
+          <p>
+            <strong>Post:</strong> <br>
+            <%= @post.post %>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+          </p>
+            <%= link_to 'Edit', edit_post_path(@post) %>
+            <%= link_to 'Back', posts_path %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
