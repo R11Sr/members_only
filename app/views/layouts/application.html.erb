@@ -41,14 +41,27 @@
         <div class="navbar-menu" id='navbarExample'>
           <div class="navbar-end">
             <div class="field is-grouped">
+                <% if !user_signed_in?%>
                 <p class="control">
-                  <%= link_to 'New Post', new_post_path, class: 'button is-light' %>
+                  <%= link_to 'Sign In',new_user_session_path, class: 'button is-light' %>
                 </p>
+
                 <p class="control">
-                  <%= link_to 'Sign Up','#', class: 'button is-light' %>
-                
+                  <%= link_to 'Sign Up',new_user_registration_path, class: 'button is-light' %>
                 </p>
-                <p class="control"></p>
+
+                <% else %>
+                  <p class="control">
+                    <%= link_to 'New Post', new_post_path, class: 'button is-light' %>
+                  </p>
+                  <p class="control">
+                    <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'button is-light' %>
+                  </p>
+                  <p class="control">
+                  <%= link_to current_user.username, edit_user_registration_path %>
+                  </p>
+
+                <% end %>
 
             </div>
           </div>
@@ -57,11 +70,12 @@
       </nav>
 
       <%# The following nav is to replace the profile %>
+      <% if user_signed_in? %>
       <nav class="level">
         <div class="level-item has-text-centered">
           <div>
             <p class="heading">Posts</p>
-            <p class="title">3,456</p>
+            <p class="title"><%=current_user.posts.count%></p>
           </div>
         </div>
         <div class="level-item has-text-centered">
@@ -82,7 +96,8 @@
             <p class="title">789</p>
           </div>
         </div>
-      </nav>      
+      </nav>  
+       <% end %>    
     <%= yield %>
   </body>
 </html>

@@ -1,12 +1,15 @@
 <div class="column is-half">
-    <article class="media box">
-        <figure class="media-left is-64x64">
-            <img src="https://bulma.io/images/placeholders/64x64.png">
-        </figure>
-        <div class="media-content">
-            <%= render 'posts/partials/form' %>
-        </div>
-    </article>
+    <% if user_signed_in? %>
+      
+        <article class="media box">
+            <figure class="media-left is-64x64">
+                <img src="https://bulma.io/images/placeholders/64x64.png">
+            </figure>
+            <div class="media-content">
+                <%= render 'posts/partials/form' %>
+            </div>
+        </article>
+    <% end %>
 
 
     <%@posts.each do |post|%>
@@ -20,27 +23,31 @@
                     </figure>
                 </div>
                 <div class="content">
-                    <strong>Author Name Here</strong> <br>
-                    <small>@Author handle here </small>
+                <%# Shows some content only if the user is signed in %>
+                    <% if user_signed_in? %>                     
+                    <strong><%=post.user.name%></strong> <br>
+                    <small>@<%=post.user.username%> </small> <br>
+                    <% end %>
                     <p><%=post.post%></p>
                 
+                  <% if user_signed_in? %>                   
+                        <nav class ='level'>
+                            <div class ='level-left is-mobile'>
+                            <%= link_to post, class: 'level-item' do %>
+                                <span class="icon"> <i class ="fa fa-link" aria-hidden="true">  </i></span>
+                            <% end %>
 
-                 <nav class ='level'>
-                    <div class ='level-left is-mobile'>
-                    <%= link_to post, class: 'level-item' do %>
-                        <span class="icon"> <i class ="fa fa-link" aria-hidden="true">  </i></span>
+                            <%= link_to edit_post_path(post), class: "level-item" do %>
+                                <span class="icon"> <i class ="fa fa-pencil" aria-hidden="true">  </i></span>
+                            <% end %>
+
+                            <%= link_to post, method: :delete, data: {confirm: 'Are you sure you want to delete this post?'} do %>
+                                <span class="icon"> <i class ="fa fa-trash-o" aria-hidden="true">  </i></span>
+
+                            <% end %>
+                            </div>
+                        </nav>
                     <% end %>
-
-                    <%= link_to edit_post_path(post), class: "level-item" do %>
-                        <span class="icon"> <i class ="fa fa-pencil" aria-hidden="true">  </i></span>
-                    <% end %>
-
-                    <%= link_to post, method: :delete, data: {confirm: 'Are you sure you want to delete this post?'} do %>
-                        <span class="icon"> <i class ="fa fa-trash-o" aria-hidden="true">  </i></span>
-
-                    <% end %>
-                    </div>
-                   </nav>
                 </div>
             </article>
         </div>
