@@ -80,14 +80,14 @@
         </div>
         <div class="level-item has-text-centered">
           <div>
-            <p class="heading">Following</p>
-            <p class="title">123</p>
+            <p class="heading">User Since</p>
+            <p class="title"><%= current_user.created_at.strftime("%Y %b %d")%></p>
           </div>
         </div>
         <div class="level-item has-text-centered">
           <div>
-            <p class="heading">Followers</p>
-            <p class="title">456K</p>
+            <p class="heading">Last account update</p>
+            <p class="title"><%= current_user.updated_at.strftime("%Y %b %d")%></p>
           </div>
         </div>
         <div class="level-item has-text-centered">

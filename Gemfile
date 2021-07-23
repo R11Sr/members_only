@@ -40,6 +40,9 @@ gem 'gravatar_image_tag', '~> 1.2'
 #Flexible authentication solution for Rails with Warden
 gem 'devise', '~> 4.8'
 
+#Format dates and times based on human-friendly examples, not arcane strftime directives.
+gem 'stamp', '~> 0.6.0'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
